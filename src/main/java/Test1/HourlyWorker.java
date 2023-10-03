@@ -17,6 +17,7 @@ public class HourlyWorker extends Employee {
             throw new IllegalArgumentException("Hours worked must be between 0 and 80.");
         }
         this.hoursWorked = hoursWorked;
+    }
 
     @Override
     public void calcGrossPay() {
