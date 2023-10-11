@@ -45,6 +45,17 @@ public class Program3
 
     }
 
+    //***************************************************************
+    //
+    //  Method:      void
+    //
+    //  Description:  Runs the program
+    //
+    //  Parameters:
+    //
+    //  Returns:      N/A
+    //
+    //**************************************************************
     public void run(){
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -80,6 +91,18 @@ public class Program3
         scanner.close();
     }
 
+
+    //***************************************************************
+    //
+    //  Method:       countDuplicateWords {
+
+    //  Description:  Counts the words repetition of the sentence.
+    //
+    //  Parameters:   String inputs
+    //
+    //  Returns:      Map of String integers
+    //
+    //**************************************************************
     public Map<String, Integer> countDuplicateWords(String input) {
         Map<String, Integer> wordCountMap = new HashMap<>();
         String[] words = input.split(" ");
