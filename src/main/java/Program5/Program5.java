@@ -35,29 +35,24 @@ public class Program5 {
     //**************************************************************
     public static void main(String[] args) {
         Program5 obj = new Program5();
+        obj.developerInfo();
         obj.readFile();
-//        obj.invoices.stream().forEach(System.out::println);
-//        for (Invoice inv : obj.invoices) {
-//            System.out.println(inv);
-//        }
-//        Syst
         obj.partDescription();
         obj.pricePerItem();
         obj.quantMap();
         obj.priceMap();
         obj.selectInvoice();
+        obj.wordChoice();
     }
-
     //***************************************************************
-    //  Method:
+    //  Method: readFile
     //
-    //  Description:
+    //  Description: Creates an object of the file, to read it
     //
-    //  Parameters:
+    //  Parameters: None
     //
-    //  Returns:
+    //  Returns: N/A
     //**************************************************************
-
     public void readFile() {
         try {
             File myObj = new File("Invoice-Data.txt");
@@ -74,33 +69,31 @@ public class Program5 {
             e.printStackTrace();
         }
     }
-
     //***************************************************************
-    //  Method:
+    //  Method: partDescription
     //
-    //  Description:
+    //  Description: Retrieves and Sort the descriptions by order
     //
-    //  Parameters:
+    //  Parameters: None
     //
-    //  Returns:
+    //  Returns: N/A
     //**************************************************************
-    public void partDescription(){
+    public void partDescription() {
         invoices.stream()
                 .sorted(Comparator.comparing(Invoice::getPartDescription))
                 .toList()
                 .forEach(System.out::println);
     }
-
     //***************************************************************
-    //  Method:
+    //  Method: pricePerItem
     //
-    //  Description:
+    //  Description: Retrieves and Sort the descriptions by price
     //
-    //  Parameters:
+    //  Parameters: None
     //
-    //  Returns:
+    //  Returns: N/A
     //**************************************************************
-    public void pricePerItem(){
+    public void pricePerItem() {
         invoices.stream()
                 .sorted(Comparator.comparing(Invoice::getPrice))
                 .toList()
@@ -108,13 +101,13 @@ public class Program5 {
 
     }
     //***************************************************************
-    //  Method:
+    //  Method: quantMap
     //
-    //  Description:
+    //  Description: Retrieves and Sort the descriptions by quantity
     //
-    //  Parameters:
+    //  Parameters: None
     //
-    //  Returns:
+    //  Returns: N/A
     //**************************************************************
     public void quantMap() {
         invoices.stream()
@@ -122,17 +115,18 @@ public class Program5 {
                 .entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue())
-                .forEach(inv -> {System.out.printf("Desc: %-15s   Quant: %d%n", inv.getKey(), inv.getValue());});
+                .forEach(inv -> {
+                    System.out.printf("Desc: %-15s   Quant: %d%n", inv.getKey(), inv.getValue());
+                });
     }
-
     //***************************************************************
-    //  Method:
+    //  Method: priceMap
     //
-    //  Description:
+    //  Description: Multiplies the quantity of the item times the price to receive the value of each item
     //
-    //  Parameters:
+    //  Parameters: None
     //
-    //  Returns:
+    //  Returns: N/A
     //**************************************************************
     public void priceMap() {
         Map<String, Double> invoiceValueMap = invoices.stream()
@@ -145,7 +139,15 @@ public class Program5 {
                     System.out.printf("Desc: %-15s   Value: %.2f%n", entry.getKey(), entry.getValue());
                 });
     }
-
+    //***************************************************************
+    //  Method: selectInvoice
+    //
+    //  Description: Will only display products within the values of $200 and $500
+    //
+    //  Parameters: None
+    //
+    //  Returns: N/A
+    //**************************************************************
     public void selectInvoice() {
         Map<String, Double> invoiceValueMap = invoices.stream()
                 .collect(Collectors.toMap(Invoice::getPartDescription, inv -> inv.getQuantity() * inv.getPrice()));
@@ -154,12 +156,47 @@ public class Program5 {
                 .stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue())
                 .forEach(entry -> {
-
-                    if (value >= 200.00 && <= 500.00){
-                    System.out.printf("Desc: %-15s   Value: %.2f%n", entry.getKey(), entry.getValue());
-                }});
+                    if (entry.getValue() >= 200.00 && entry.getValue() <= 500.00) {
+                        System.out.printf("Desc: %-15s   Value: %.2f%n", entry.getKey(), entry.getValue());
+                    }
+                });
     }
+    //***************************************************************
+    //  Method: wordChoice
+    //
+    //  Description: Display any description that contians the word Saw
+    //
+    //  Parameters: None
+    //
+    //  Returns: N/A
+    //**************************************************************
+    public void wordChoice() {
+        invoices.stream()
+                .sorted(Comparator.comparing(Invoice::getPartDescription))
+//              .collect(Collectors.toMap(inv -> inv.getPartDescription()
+                .filter(str -> str.getPartDescription().contains("Saw"))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
 
+    }
+    //***************************************************************
+    //
+    //  Method:       developerInfo
+    //
+    //  Description:  The developer information method of the program
+    //
+    //  Parameters:   None
+    //
+    //  Returns:      N/A
+    //
+    //**************************************************************
+    public void developerInfo()
+    {
+        System.out.println("Name:    Jakira Dunson");
+        System.out.println("Course:   ITSE 2317 Java Programming (Intermediate)");
+        System.out.println("Program: Five \n");
+
+    } // End of developerInfo
 }
 
 
