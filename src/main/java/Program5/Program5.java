@@ -83,6 +83,7 @@ public class Program5 {
                 .sorted(Comparator.comparing(Invoice::getPartDescription))
                 .toList()
                 .forEach(System.out::println);
+        System.out.println("\n");
     }
     //***************************************************************
     //  Method: pricePerItem
@@ -98,6 +99,7 @@ public class Program5 {
                 .sorted(Comparator.comparing(Invoice::getPrice))
                 .toList()
                 .forEach(System.out::println);
+        System.out.println("\n");
 
     }
     //***************************************************************
@@ -116,8 +118,9 @@ public class Program5 {
                 .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue())
                 .forEach(inv -> {
-                    System.out.printf("Desc: %-15s   Quant: %d%n", inv.getKey(), inv.getValue());
+                    System.out.printf("Description: %-15s   Quantity: %d%n", inv.getKey(), inv.getValue());
                 });
+        System.out.println("\n");
     }
     //***************************************************************
     //  Method: priceMap
@@ -136,8 +139,9 @@ public class Program5 {
                 .stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue())
                 .forEach(entry -> {
-                    System.out.printf("Desc: %-15s   Value: %.2f%n", entry.getKey(), entry.getValue());
+                    System.out.printf("Description: %-15s  Invoice Value: %.2f%n", entry.getKey(), entry.getValue());
                 });
+        System.out.println("\n");
     }
     //***************************************************************
     //  Method: selectInvoice
@@ -157,9 +161,10 @@ public class Program5 {
                 .sorted(Map.Entry.<String, Double>comparingByValue())
                 .forEach(entry -> {
                     if (entry.getValue() >= 200.00 && entry.getValue() <= 500.00) {
-                        System.out.printf("Desc: %-15s   Value: %.2f%n", entry.getKey(), entry.getValue());
+                        System.out.printf("Description: %-15s  Invoice Value: %.2f%n", entry.getKey(), entry.getValue());
                     }
                 });
+        System.out.println("\n");
     }
     //***************************************************************
     //  Method: wordChoice
@@ -177,6 +182,7 @@ public class Program5 {
                 .filter(str -> str.getPartDescription().contains("Saw"))
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
+                System.out.println("\n");
 
     }
     //***************************************************************
